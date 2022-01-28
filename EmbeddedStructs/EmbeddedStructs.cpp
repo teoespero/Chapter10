@@ -11,23 +11,30 @@
 
 using namespace std;
 
+// definition of a date
 struct Dates{
 	int month, day, year;
 };
 
+// defining a phone number
 struct Phoneinfo{
 	string areacode, phonenum, ext;
 };
 
+// defining an address
 struct Address {
 	int streetnum;
 	string streetname, city, state, zip;
 };
 
+// defining a name
 struct Name {
 	string lastname, firstname;
 };
 
+// putting all the different structures
+// together to form one record
+// consisting of several types of data
 struct Personnelrec {
 	Name fullname;
 	Dates birthday;
@@ -36,6 +43,7 @@ struct Personnelrec {
 };
 
 
+// print the data file
 void printdata() {
 	ifstream mydatafle;
 	string linedata;
@@ -54,6 +62,8 @@ void printdata() {
 	mydatafle.close();
 }
 
+// save the user input into a data 
+// file on disk
 void writetofile(Personnelrec& rectowrite) {
 	ofstream myFile;
 
@@ -92,6 +102,8 @@ void writetofile(Personnelrec& rectowrite) {
 	cout << "\t(1) record saved" << endl;
 }
 
+// function to get input
+// from the program user
 void getinfofromuser(Personnelrec& newrecord) {
 	
 	cout << "first name.....";
