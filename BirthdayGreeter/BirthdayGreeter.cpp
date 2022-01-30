@@ -86,7 +86,11 @@ bool TheDate::checkdate() {
 		myDate.month >= 1 
 		&& myDate.month <= 12
 		) {
+
+		// February
 		if (myDate.month == 2) {
+
+			// check for leap year days
 			if (isLeapyear()) {
 				if (
 					myDate.day >= 1 
@@ -116,14 +120,16 @@ bool TheDate::checkdate() {
 		// we are also validating if the number of days
 		// corresponds to the month they entered
 		else if (
-			myDate.month == 1 
-			|| myDate.month == 3 
-			|| myDate.month == 5 
-			|| myDate.month == 7 
-			|| myDate.month == 8 
-			|| myDate.month == 10 
-			|| myDate.month == 12
+			myDate.month == 1		// January
+			|| myDate.month == 3	// March
+			|| myDate.month == 5	// May
+			|| myDate.month == 7	// July
+			|| myDate.month == 8	// August
+			|| myDate.month == 10	// October
+			|| myDate.month == 12	// December
 			) {
+
+			// 31 days only
 			if (myDate.day >= 1 and myDate.day <= 31) {
 				return true;
 			}
@@ -133,11 +139,13 @@ bool TheDate::checkdate() {
 			}
 		}
 		else if (
-			myDate.month ==4 
-			|| myDate.month == 6 
-			|| myDate.month == 9 
-			|| myDate.month == 11
+			myDate.month == 4		// April
+			|| myDate.month == 6	// June
+			|| myDate.month == 9	// September
+			|| myDate.month == 11	// November
 			) {
+
+			// 30 days only
 			if (
 				myDate.day >= 1 
 				&& myDate.day <= 30
