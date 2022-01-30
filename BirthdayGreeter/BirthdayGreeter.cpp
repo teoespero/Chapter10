@@ -82,10 +82,16 @@ bool TheDate::isLeapyear() {
 bool TheDate::checkdate() {
 	// check if the date entered is valid
 	// months 1-12
-	if (myDate.month >= 1 && myDate.month <= 12) {
+	if (
+		myDate.month >= 1 
+		&& myDate.month <= 12
+		) {
 		if (myDate.month == 2) {
 			if (isLeapyear()) {
-				if (myDate.day >= 1 and myDate.day <=29) {
+				if (
+					myDate.day >= 1 
+					&& myDate.day <=29
+					) {
 					return true;
 				}
 				else {
@@ -94,7 +100,10 @@ bool TheDate::checkdate() {
 				}
 			}
 			else {
-				if (myDate.day >= 1 and myDate.day <= 28) {
+				if (
+					myDate.day >= 1 
+					&& myDate.day <= 28
+					) {
 					return true;
 				}
 				else {
@@ -103,7 +112,18 @@ bool TheDate::checkdate() {
 				}
 			}
 		}
-		else if (myDate.month == 1 || myDate.month == 3 || myDate.month == 5 || myDate.month == 7 || myDate.month == 8 || myDate.month == 10 || myDate.month == 12) {
+
+		// we are also validating if the number of days
+		// corresponds to the month they entered
+		else if (
+			myDate.month == 1 
+			|| myDate.month == 3 
+			|| myDate.month == 5 
+			|| myDate.month == 7 
+			|| myDate.month == 8 
+			|| myDate.month == 10 
+			|| myDate.month == 12
+			) {
 			if (myDate.day >= 1 and myDate.day <= 31) {
 				return true;
 			}
@@ -112,8 +132,16 @@ bool TheDate::checkdate() {
 				return false;
 			}
 		}
-		else if (myDate.month ==4 || myDate.month == 6 || myDate.month == 9 || myDate.month == 11) {
-			if (myDate.day >= 1 and myDate.day <= 30) {
+		else if (
+			myDate.month ==4 
+			|| myDate.month == 6 
+			|| myDate.month == 9 
+			|| myDate.month == 11
+			) {
+			if (
+				myDate.day >= 1 
+				&& myDate.day <= 30
+				) {
 				return true;
 			}
 			else {
@@ -151,7 +179,9 @@ void ProcessDates::getname() {
 }
 
 bool ProcessDates::isItYourBday(TheDate theDOB) {
-	if (myDate.month== theDOB.myDate.month && myDate.day == theDOB.myDate.day)
+	if (
+		myDate.month== theDOB.myDate.month 
+		&& myDate.day == theDOB.myDate.day)
 		return true;
 	else
 		return false;
