@@ -32,6 +32,9 @@ public:
 
 	Date myDate;
 	Name myname;
+
+	bool checkdate();
+	bool isLeapyear();
 };
 
 // child class
@@ -40,48 +43,111 @@ public:
 
 	bool isItYourBday(TheDate theDOB);
 	void greetFuncs(bool mybirthdaytoday, TheDate theDOB);
+	void getname();
+	void getdate();
 };
 
 int main() {
 	ProcessDates today, theDOB;
 	bool mybirthdaytoday = false;
 	
+	// user name
+	today.getname();
+
+	// current date
+	do {
+		cout << "Current date:" << endl;
+		today.getdate();
+	} while (!(today.checkdate()));
+	
+	
+	// birthday
+	do {
+		cout << "Birthday:" << endl;
+		theDOB.getdate();
+	} while (!(theDOB.checkdate()));
+	
+	// check if today is the user's bday
+	mybirthdaytoday = today.isItYourBday(theDOB);
+	today.greetFuncs(mybirthdaytoday, theDOB);
+}
+
+bool TheDate::isLeapyear() {
+	if ((myDate.year % 4) == 0)
+		return true;
+	else
+		return false;
+}
+
+bool TheDate::checkdate() {
+	// check if the date entered is valid
+	// months 1-12
+	if (myDate.month >= 1 && myDate.month <= 12) {
+		if (myDate.month == 2) {
+			if (isLeapyear()) {
+				if (myDate.day >= 1 and myDate.day <=29) {
+					return true;
+				}
+				else {
+					cout << "\t**** invalid date." << endl;
+					return false;
+				}
+			}
+			else {
+				if (myDate.day >= 1 and myDate.day <= 28) {
+					return true;
+				}
+				else {
+					cout << "\t**** invalid date." << endl;
+					return false;
+				}
+			}
+		}
+		else if (myDate.month == 1 || myDate.month == 3 || myDate.month == 5 || myDate.month == 7 || myDate.month == 8 || myDate.month == 10 || myDate.month == 12) {
+			if (myDate.day >= 1 and myDate.day <= 31) {
+				return true;
+			}
+			else {
+				cout << "\t**** invalid date." << endl;
+				return false;
+			}
+		}
+		else if (myDate.month ==4 || myDate.month == 6 || myDate.month == 9 || myDate.month == 11) {
+			if (myDate.day >= 1 and myDate.day <= 30) {
+				return true;
+			}
+			else {
+				cout << "\t**** invalid date." << endl;
+				return false;
+			}
+		}
+	}
+	else {
+		cout << "\t**** invalid date." << endl;
+		return false;
+	}
+}
+
+void ProcessDates::getdate() {
+	// current date
+	cout << "month.....";
+	cin >> myDate.month;
+
+	cout << "day.....";
+	cin >> myDate.day;
+
+	cout << "year.....";
+	cin >> myDate.year;
+}
+
+void ProcessDates::getname() {
 	// get name
 	cout << "Names:" << endl;
 	cout << "lastname...";
-	cin >> today.myname.lastname;
+	cin >> myname.lastname;
 
 	cout << "firstname...";
-	cin >> today.myname.firstname;
-
-	// current date
-	cout << "Current date:" << endl << endl;
-
-	cout << "month.....";
-	cin >> today.myDate.month;
-
-	cout << "day.....";
-	cin >> today.myDate.day;
-
-	cout << "year.....";
-	cin >> today.myDate.year;
-
-	cout << endl << endl;
-
-	// birthday
-	cout << "Your birthdate:" << endl << endl;
-
-	cout << "month.....";
-	cin >> theDOB.myDate.month;
-
-	cout << "day.....";
-	cin >> theDOB.myDate.day;
-
-	cout << "year.....";
-	cin >> theDOB.myDate.year;
-
-	mybirthdaytoday = today.isItYourBday(theDOB);
-	today.greetFuncs(mybirthdaytoday, theDOB);
+	cin >> myname.firstname;
 }
 
 bool ProcessDates::isItYourBday(TheDate theDOB) {
@@ -124,10 +190,15 @@ void ProcessDates::greetFuncs(bool mybirthdaytoday, TheDate theDOB) {
 
 		// compute the number of months you have to wait
 		// for your next bday
-		else if (theDOB.myDate.month > myDate.month)
+		else if (theDOB.myDate.month > myDate.month) {
 			waitmonths = theDOB.myDate.month - myDate.month;
-		else
-			waitmonths = 12 - (theDOB.myDate.month + myDate.month);
+		}
+		// if your birthday month has passed
+		// you must wait for another year
+		else {
+			waitmonths = (12 - myDate.month) + theDOB.myDate.month;
+		}
+			
 
 		// tell the user how long they
 		// have to wait until their bday
