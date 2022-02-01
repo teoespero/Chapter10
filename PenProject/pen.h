@@ -94,9 +94,21 @@ public:
             return "invalid color set";
     }
 
+    string getpentypeused(PenType thepenused) {
+        if (thepenused == 0)
+            return "ballpoint";
+        else if (thepenused == 1)
+            return "marker";
+        else if (thepenused == 1)
+            return "fountainpen";
+        else
+            return "invalid pen type set";
+    }
+
     void showinfo() {
         cout << endl << endl;
         cout << "brand....." << penbrand << endl;
+        cout << "pentype....." << getpentypeused(Style) << endl;
         cout << "case color....." << getcolor(ShellColor) << endl;
         cout << "ink color....." << getcolor(InkColor) << endl;
         cout << "ink level....." << inklevel<< endl;
