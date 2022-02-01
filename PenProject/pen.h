@@ -19,6 +19,8 @@ enum PenType {
 
 class Pen {
 public:
+    
+
     Color InkColor;
     Color ShellColor;
     PenType Style;
@@ -26,6 +28,15 @@ public:
     int inklevel;
     string penbrand;
     int howmanypens;
+    
+    void writesomething(string whatamiwriting) {
+        if (inklevel > 10) {
+            cout << endl
+                << "I am writing " << whatamiwriting
+                << " using " << getcolor(InkColor)
+                << " ink." << endl;
+        }
+    }
 
     void checkinklevel() {
         if (inklevel <= 100) {

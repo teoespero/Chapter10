@@ -32,5 +32,8 @@ int main(){
 	teo.showinfo();
 	josie.showinfo();
 
+	josie.writesomething("hello horseys!");
+	teo.writesomething("hello mestiza!");
+
 	return 0;
 }
